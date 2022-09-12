@@ -1,0 +1,61 @@
+{
+  "sourceIncome": {
+    "Salary": 0.04,
+    "Pension": 0.04,
+    "Inheritance": 0.01,
+    "Investment_revenues": 0.00,
+    "Bonuses": 0.00
+  },
+  "investingPurpose": {
+    "Child_plan": 0.04,
+    "Retirement": 0.03,
+    "Tax": 0.03,
+    "Asset": 0.04,
+    "General": 0.01
+  },
+  "availableFunds": {
+    "1_million": 0.04,
+    "1_3_million": 0.03,
+    "3_5_million": 0.02,
+    "5_10_million": 0.01,
+    "Above_10_million": 0.00
+  },
+  "experiencedPeriod": {
+    "Less_1_year": 0.04,
+    "1_3_years": 0.03,
+    "3_5_years": 0.02,
+    "More_5_years": 0.01
+  },
+  "investmentFamilarity": {
+    "None": 0.04,
+    "Not_familiar": 0.03,
+    "Basics": 0.02,
+    "Familiar": 0.01,
+    "Experienced": 0.00
+  },
+  "experiencedTools": {
+    "Foreign_currency": 0.05,
+    "Insurance": 0.04,
+    "Bonds": 0.03,
+    "Funds": 0.02,
+    "Stocks": 0.01,
+    "Derivatives": 0.00
+  },
+  "tolerance": {
+    "Less_50k": 0.05,
+    "50_150k": 0.04,
+    "150_250k": 0.03,
+    "250_400k": 0.02,
+    "More_400k": 0.01
+  },
+  "riskReward": {
+    "Risk": 0.03,
+    "Risk_reward": 0.02,
+    "Reward": 0.00
+  },
+  "investmentPeriod": {
+    "Risk": 0.02,
+    "Risk_reward": 0.01,
+    "Reward": 0.00
+  }
+}

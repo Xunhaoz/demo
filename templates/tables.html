@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>AI資產配置系統-標的清單</title>
+
+  <!-- Custom fonts for this template -->
+  <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+  <!-- Custom styles for this page -->
+  <link href="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">AI資產配置系統</div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        功能
+      </div>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item active">
+        <a class="nav-link" href="tables.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>投資標的清單</span></a>
+      </li>
+
+      <!-- Nav Item - Estimation -->
+      <li class="nav-item">
+        <a class="nav-link" href="estimation.html">
+          <i class="fas fa-fw fa-pen"></i>
+          <span>投資屬性評估</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">投資標的總表</h1>
+          <p class="mb-4"> </p>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">投資標的列表</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>投資標的代號</th>
+                      <th>投資標的名稱</th>
+                      <th>績效: 1月</th>
+                      <th>績效: 3月</th>
+                      <th>績效: 1年</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>投資標的代號</th>
+                      <th>投資標的名稱</th>
+                      <th>績效: 1月</th>
+                      <th>績效: 3月</th>
+                      <th>績效: 1年</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000J5IE</td>
+                        <td>德信中國精選成長基金</td>
+                        <td>26.59%</td>
+                        <td>39.13%</td>
+                        <td>39.95%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000T1FR</td>
+                        <td>群益中國新機會基金-美元</td>
+                        <td>29.91%</td>
+                        <td>50.15%</td>
+                        <td>79.1%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000ZTOH</td>
+                        <td>群益中國新機會基金N-美元</td>
+                        <td>29.91%</td>
+                        <td>50.15%</td>
+                        <td>79.13%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000T1FQ</td>
+                        <td>群益中國新機會基金-新臺幣</td>
+                        <td>29.2%</td>
+                        <td>47.49%</td>
+                        <td>70.53%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000WAE8</td>
+                        <td>國泰中國新興戰略基金-美元</td>
+                        <td>23.7%</td>
+                        <td>31.02%</td>
+                        <td>41.98%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000005J95</td>
+                        <td>國泰中港台基金-新台幣</td>
+                        <td>23.27%</td>
+                        <td>30.44%</td>
+                        <td>50.04%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000UJHC</td>
+                        <td>國泰中港台基金-美元</td>
+                        <td>23.97%</td>
+                        <td>32.76%</td>
+                        <td>57.61%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000ZTOF</td>
+                        <td>群益中國新機會基金N-新臺幣</td>
+                        <td>29.17%</td>
+                        <td>47.45%</td>
+                        <td>70.31%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000O46E</td>
+                        <td>國泰中國新興戰略基金-新台幣</td>
+                        <td>22.93%</td>
+                        <td>28.69%</td>
+                        <td>35.15%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000002QO1</td>
+                        <td>野村中國機會基金</td>
+                        <td>24.34%</td>
+                        <td>41.42%</td>
+                        <td>44.18%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000TNVE</td>
+                        <td>華南永昌中國A股基金(新台幣)</td>
+                        <td>26.09%</td>
+                        <td>35.43%</td>
+                        <td>34.29%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000VDW5</td>
+                        <td>華南永昌中國A股基金(美元)</td>
+                        <td>26.91%</td>
+                        <td>38.05%</td>
+                        <td>41.5%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000WE5Y</td>
+                        <td>富蘭克林華美中國傘型基金之中國A股基金-美元</td>
+                        <td>25.54%</td>
+                        <td>37.02%</td>
+                        <td>45.7%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000TV2D</td>
+                        <td>富蘭克林華美中國傘型基金之中國A股基金-新臺幣</td>
+                        <td>24.79%</td>
+                        <td>34.37%</td>
+                        <td>38.69%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000W9JP</td>
+                        <td>保德信中國品牌基金-美元</td>
+                        <td>25.29%</td>
+                        <td>36.13%</td>
+                        <td>46.98%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000M90C</td>
+                        <td>保德信中國品牌基金-新臺幣</td>
+                        <td>25.36%</td>
+                        <td>36.33%</td>
+                        <td>47.65%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000W9JQ</td>
+                        <td>保德信中國品牌基金-人民幣</td>
+                        <td>25.23%</td>
+                        <td>36.15%</td>
+                        <td>46.56%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000V86R</td>
+                        <td>元大大中華TMT基金-新台幣</td>
+                        <td>23.86%</td>
+                        <td>32.15%</td>
+                        <td>67.14%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000YN6P</td>
+                        <td>新光中國成長基金(美元)</td>
+                        <td>28.34%</td>
+                        <td>36.22%</td>
+                        <td>33.15%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000VDW3</td>
+                        <td>華南永昌中國A股基金(人民幣)</td>
+                        <td>25.37%</td>
+                        <td>37.31%</td>
+                        <td>43.23%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000MRJX</td>
+                        <td>日盛中國內需動力基金</td>
+                        <td>22.12%</td>
+                        <td>32.46%</td>
+                        <td>35.74%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000ZUFA</td>
+                        <td>國泰中國新興戰略基金-人民幣</td>
+                        <td>22.37%</td>
+                        <td>30.03%</td>
+                        <td>44.48%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000ZUF8</td>
+                        <td>國泰中港台基金-人民幣</td>
+                        <td>22.63%</td>
+                        <td>31.76%</td>
+                        <td>60.41%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000WCKD</td>
+                        <td>群益中國新機會基金-人民幣</td>
+                        <td>28.58%</td>
+                        <td>49.08%</td>
+                        <td>82.26%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000ZTOJ</td>
+                        <td>群益中國新機會基金N-人民幣</td>
+                        <td>28.58%</td>
+                        <td>49.08%</td>
+                        <td>82.27%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000010I15</td>
+                        <td>台新中國精選中小基金-美元</td>
+                        <td>26.84%</td>
+                        <td>38.09%</td>
+                        <td>65.39%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000ZTNV</td>
+                        <td>群益華夏盛世基金N-新臺幣</td>
+                        <td>25.42%</td>
+                        <td>42.58%</td>
+                        <td>61.61%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000002QK5</td>
+                        <td>新光中國成長基金(新臺幣)</td>
+                        <td>27.59%</td>
+                        <td>33.63%</td>
+                        <td>26.5%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000JNYC</td>
+                        <td>台新中國精選中小基金-新台幣</td>
+                        <td>25.97%</td>
+                        <td>36.65%</td>
+                        <td>58.46%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000VW5G</td>
+                        <td>群益華夏盛世基金-美元</td>
+                        <td>26.19%</td>
+                        <td>45.21%</td>
+                        <td>69.8%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000ZTNX</td>
+                        <td>群益華夏盛世基金N-美元</td>
+                        <td>26.19%</td>
+                        <td>45.21%</td>
+                        <td>69.81%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000005OD1</td>
+                        <td>群益華夏盛世基金-新臺幣</td>
+                        <td>25.4%</td>
+                        <td>42.58%</td>
+                        <td>61.61%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000010E0X</td>
+                        <td>統一大中華中小基金(美元)</td>
+                        <td>25.33%</td>
+                        <td>44.92%</td>
+                        <td>73.95%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000JQCV</td>
+                        <td>統一大中華中小基金(新台幣)</td>
+                        <td>24.59%</td>
+                        <td>42.41%</td>
+                        <td>65.7%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000U4HO</td>
+                        <td>兆豐國際中國A股基金(台幣)</td>
+                        <td>18.69%</td>
+                        <td>29.83%</td>
+                        <td>17.85%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000U4HP</td>
+                        <td>兆豐國際中國A股基金(美金)</td>
+                        <td>19.31%</td>
+                        <td>31.53%</td>
+                        <td>22.32%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000ZCK3</td>
+                        <td>富邦大中華成長基金-(美元)</td>
+                        <td>24.17%</td>
+                        <td>40.82%</td>
+                        <td>49.9%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000013H9J</td>
+                        <td>柏瑞中國A股量化精選基金-A類型(美元)</td>
+                        <td>23.46%</td>
+                        <td>28.48%</td>
+                        <td>25.17%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000013H9N</td>
+                        <td>柏瑞中國A股量化精選基金-N9類型(美元)</td>
+                        <td>23.46%</td>
+                        <td>28.48%</td>
+                        <td>25.17%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000XOZN</td>
+                        <td>保德信中國中小基金-美元</td>
+                        <td>25.21%</td>
+                        <td>33.17%</td>
+                        <td>58.2%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F0HKG0717F</td>
+                        <td>富邦大中華成長基金-(新臺幣)</td>
+                        <td>23.53%</td>
+                        <td>38.2%</td>
+                        <td>42.79%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000UJJP</td>
+                        <td>保德信中國中小基金-新臺幣</td>
+                        <td>24.42%</td>
+                        <td>30.66%</td>
+                        <td>50.62%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000013H9I</td>
+                        <td>柏瑞中國A股量化精選基金-A類型</td>
+                        <td>22.67%</td>
+                        <td>26.12%</td>
+                        <td>19.29%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000013H9M</td>
+                        <td>柏瑞中國A股量化精選基金-N9類型</td>
+                        <td>22.67%</td>
+                        <td>26.12%</td>
+                        <td>19.29%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000W5FC</td>
+                        <td>富蘭克林華美中國傘型基金之中國A股基金-人民幣</td>
+                        <td>24.3%</td>
+                        <td>35.94%</td>
+                        <td>48.25%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000XPHN</td>
+                        <td>日盛中國戰略A股基金(美元)</td>
+                        <td>23.06%</td>
+                        <td>35.16%</td>
+                        <td>43.55%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000XPHM</td>
+                        <td>日盛中國戰略A股基金(新台幣)</td>
+                        <td>22.27%</td>
+                        <td>32.72%</td>
+                        <td>36.74%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000JXV7</td>
+                        <td>元大華夏中小基金</td>
+                        <td>24.14%</td>
+                        <td>29.9%</td>
+                        <td>37.33%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000010G86</td>
+                        <td>台新中國傘型基金之台新中証消費服務領先指數基金-美元</td>
+                        <td>27.81%</td>
+                        <td>43.88%</td>
+                        <td>55.11%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000002JDU</td>
+                        <td>復華華人世紀基金</td>
+                        <td>25.72%</td>
+                        <td>48%</td>
+                        <td>59.93%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000TICO</td>
+                        <td>台新中國傘型基金之台新中証消費服務領先指數基金-新臺幣</td>
+                        <td>26.99%</td>
+                        <td>41.09%</td>
+                        <td>47.54%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000V87J</td>
+                        <td>元大大中華TMT基金-人民幣</td>
+                        <td>23.25%</td>
+                        <td>33.51%</td>
+                        <td>78.97%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F0HKG05WVY</td>
+                        <td>保德信大中華基金-新台幣</td>
+                        <td>21.75%</td>
+                        <td>33.94%</td>
+                        <td>40.34%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00001186C</td>
+                        <td>聯博中國A股基金-A2類型(美元)</td>
+                        <td>23.01%</td>
+                        <td>26.78%</td>
+                        <td>25.75%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000WB7M</td>
+                        <td>匯豐中國科技精選基金(美元)</td>
+                        <td>23.01%</td>
+                        <td>39.9%</td>
+                        <td>75.49%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F0000113AQ</td>
+                        <td>安聯中國策略基金-美元</td>
+                        <td>23.04%</td>
+                        <td>40.84%</td>
+                        <td>60.26%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00001186B</td>
+                        <td>聯博中國A股基金-A2類型(新台幣)</td>
+                        <td>22.28%</td>
+                        <td>24.34%</td>
+                        <td>19.69%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000WGC6</td>
+                        <td>摩根中國A股基金(美元)</td>
+                        <td>22.61%</td>
+                        <td>39.22%</td>
+                        <td>47.77%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000YN6Q</td>
+                        <td>新光中國成長基金(人民幣)</td>
+                        <td>26.99%</td>
+                        <td>35.3%</td>
+                        <td>35.74%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000WB7K</td>
+                        <td>匯豐中國科技精選基金(台幣)</td>
+                        <td>22.2%</td>
+                        <td>37.47%</td>
+                        <td>67.03%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000002X86</td>
+                        <td>安聯中國策略基金-新臺幣</td>
+                        <td>22.24%</td>
+                        <td>38.27%</td>
+                        <td>52.14%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000Q03Y</td>
+                        <td>摩根中國A股基金</td>
+                        <td>21.93%</td>
+                        <td>36.78%</td>
+                        <td>40.63%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000002P43</td>
+                        <td>富蘭克林華美中華基金</td>
+                        <td>22.22%</td>
+                        <td>33.56%</td>
+                        <td>56.59%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000WGHX</td>
+                        <td>群益大中華雙力優勢基金-美元</td>
+                        <td>20.59%</td>
+                        <td>33.76%</td>
+                        <td>43.3%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000010E0Z</td>
+                        <td>統一大龍騰中國基金(美元)</td>
+                        <td>21.3%</td>
+                        <td>40.34%</td>
+                        <td>65.28%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000NHY4</td>
+                        <td>群益大中華雙力優勢基金-新臺幣</td>
+                        <td>19.84%</td>
+                        <td>31.34%</td>
+                        <td>36.39%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000VW5H</td>
+                        <td>群益華夏盛世基金-人民幣</td>
+                        <td>24.9%</td>
+                        <td>44.18%</td>
+                        <td>72.79%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000ZTNZ</td>
+                        <td>群益華夏盛世基金N-人民幣</td>
+                        <td>24.9%</td>
+                        <td>44.18%</td>
+                        <td>72.79%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000N745</td>
+                        <td>瀚亞中國A股基金-新台幣</td>
+                        <td>23.05%</td>
+                        <td>36.93%</td>
+                        <td>47.69%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000UISC</td>
+                        <td>統一大龍騰中國基金(新台幣)</td>
+                        <td>20.56%</td>
+                        <td>37.84%</td>
+                        <td>57.25%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00001026Y</td>
+                        <td>永豐滬深300紅利指數基金-美元類型</td>
+                        <td>18.19%</td>
+                        <td>19.3%</td>
+                        <td>8.54%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000YDZX</td>
+                        <td>兆豐國際中國A股基金(人民幣)</td>
+                        <td>18.14%</td>
+                        <td>30.82%</td>
+                        <td>24.6%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000Q875</td>
+                        <td>永豐滬深300紅利指數基金-新臺幣類型</td>
+                        <td>17.56%</td>
+                        <td>17.56%</td>
+                        <td>4.18%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000010E0Y</td>
+                        <td>統一大中華中小基金(人民幣)</td>
+                        <td>24.17%</td>
+                        <td>44.18%</td>
+                        <td>77.37%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000XOZM</td>
+                        <td>保德信中國中小基金-人民幣</td>
+                        <td>23.78%</td>
+                        <td>32.23%</td>
+                        <td>60.9%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000013H9K</td>
+                        <td>柏瑞中國A股量化精選基金-A類型(人民幣)</td>
+                        <td>22.19%</td>
+                        <td>27.27%</td>
+                        <td>27.4%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000013H9O</td>
+                        <td>柏瑞中國A股量化精選基金-N9類型(人民幣)</td>
+                        <td>22.19%</td>
+                        <td>27.27%</td>
+                        <td>27.4%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F0HKG06ZDR</td>
+                        <td>復華亞太成長基金</td>
+                        <td>20.93%</td>
+                        <td>43.76%</td>
+                        <td>47.01%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000NSAV</td>
+                        <td>永豐中國經濟建設基金-新臺幣類型</td>
+                        <td>18.53%</td>
+                        <td>30.86%</td>
+                        <td>35.42%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000013X8D</td>
+                        <td>兆豐國際中國內需A股基金(美金)</td>
+                        <td>23.29%</td>
+                        <td>40.02%</td>
+                        <td> - </td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000VV22</td>
+                        <td>復華中國新經濟A股基金-新臺幣</td>
+                        <td>21.99%</td>
+                        <td>35.29%</td>
+                        <td>40.71%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000XPHO</td>
+                        <td>日盛中國戰略A股基金(人民幣)</td>
+                        <td>21.8%</td>
+                        <td>34.17%</td>
+                        <td>46.25%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000WE5X</td>
+                        <td>富蘭克林華美中國消費基金-美元</td>
+                        <td>23.6%</td>
+                        <td>34.07%</td>
+                        <td>53.43%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000010RET</td>
+                        <td>國泰中國新時代平衡基金-美元</td>
+                        <td>21.6%</td>
+                        <td>29.84%</td>
+                        <td>37.94%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000010RES</td>
+                        <td>國泰中國新時代平衡基金-新台幣</td>
+                        <td>20.88%</td>
+                        <td>27.4%</td>
+                        <td>31.3%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000MAJF</td>
+                        <td>富蘭克林華美中國消費基金-新臺幣</td>
+                        <td>22.94%</td>
+                        <td>31.65%</td>
+                        <td>46.07%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000V6X2</td>
+                        <td>國泰中國內需增長基金-美元I</td>
+                        <td>20.82%</td>
+                        <td>37.03%</td>
+                        <td>51.56%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000010N20</td>
+                        <td>保德信大中華基金-人民幣</td>
+                        <td>21.09%</td>
+                        <td>35.24%</td>
+                        <td>49.95%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000TPS8</td>
+                        <td>國泰中國內需增長基金-美元A</td>
+                        <td>20.71%</td>
+                        <td>36.72%</td>
+                        <td>50.18%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000MLTJ</td>
+                        <td>國泰中國內需增長基金-新台幣</td>
+                        <td>19.99%</td>
+                        <td>34.29%</td>
+                        <td>42.98%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000WB7L</td>
+                        <td>匯豐中國科技精選基金(人民幣)</td>
+                        <td>21.54%</td>
+                        <td>38.67%</td>
+                        <td>78.44%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000ZYYP</td>
+                        <td>復華亞太神龍科技基金-新臺幣</td>
+                        <td>18.99%</td>
+                        <td>42.02%</td>
+                        <td>48.07%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000WBEE</td>
+                        <td>瀚亞中國A股基金-人民幣</td>
+                        <td>22.53%</td>
+                        <td>38.42%</td>
+                        <td>59.42%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000ZYYQ</td>
+                        <td>復華亞太神龍科技基金-美元</td>
+                        <td>19.78%</td>
+                        <td>44.66%</td>
+                        <td>55.14%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000WGHY</td>
+                        <td>群益大中華雙力優勢基金-人民幣</td>
+                        <td>19.35%</td>
+                        <td>32.81%</td>
+                        <td>45.83%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000005JRN</td>
+                        <td>摩根中國亮點基金</td>
+                        <td>15.88%</td>
+                        <td>28.02%</td>
+                        <td>28.9%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00001186D</td>
+                        <td>聯博中國A股基金-A2類型(人民幣)</td>
+                        <td>21.68%</td>
+                        <td>25.52%</td>
+                        <td>27.85%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F000002PDQ</td>
+                        <td>元大新中國基金-新台幣</td>
+                        <td>17.09%</td>
+                        <td>16.73%</td>
+                        <td>25.52%</td>
+                    </tr><!-- update by ./crawler/target_table.py -->
+                    <tr>
+                        <td>F00000WKGJ</td>
+                        <td>元大新中國基金-美元</td>
+                        <td>17.86%</td>
+                        <td>19.07%</td>
+                        <td>31.95%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2019</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="js/demo/datatables-demo.js"></script>
+
+</body>
+
+</html>

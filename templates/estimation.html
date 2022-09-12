@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>AI資產配置系統-評估選單</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content" style="margin-bottom:50px">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-4 text-gray-800"> 您的投資屬性評估</h1>
+          <div class="container">
+            <form id='Financial_form' method="POST" action="/result_page">
+
+              <!-- Source of income -->
+              <div class="form-group">
+                <label class="text-lg text-primary" for="sourceIncome"> 主要資金來源</label>
+                <div class="d-flex justify-content-center my-2">
+                  <select class="form-control form-control-lg w-75 text-gray-900" id='sourceIncome' name="sourceIncome">
+                    <option value="Salary"> 薪資/固定收入</option>
+                    <option value="Pension"> 退休金</option>
+                    <option value="Inheritance"> 繼承/贈與資金</option>
+                    <option value="Investment_revenues"> 投資收益</option>
+                    <option value="Bonuses"> 獎金</option>
+                  </select>
+                </div>
+              </div>
+
+              <!--  Investing purpose -->
+              <div class="form-group">
+                <label class="text-lg text-primary" for="investingPurpose"> 理財主要目的</label>
+                <div class="d-flex justify-content-center my-2">
+                  <select class="form-control form-control-lg w-75 text-gray-900" id='investingPurpose' name="investingPurpose">
+                    <option value="Child_plan"> 子女教育基金</option>
+                    <option value="Retirement"> 退休計畫</option>
+                    <option value="Tax"> 稅務管理/資產移轉</option>
+                    <option value="Asset"> 置產</option>
+                    <option value="General"> 一般投資理財</option>
+                  </select>
+                </div>
+              </div>
+
+              <!--  Currently available funds -->
+              <div class="form-group"
+              >
+                <label class="text-lg text-primary" for="AvailableFunds"> 目前隨時可以動用的資金約有</label>
+                <div class="d-flex justify-content-center my-2">
+                  <select class="form-control form-control-lg w-75 text-gray-900" id='availableFunds' name="availableFunds">
+                    <option value="1_million"> 100萬</option>
+                    <option value="1_3_million"> 100~300萬</option>
+                    <option value="3_5_million"> 300~500萬</option>
+                    <option value="5_10_million"> 500萬~1000萬</option>
+                    <option value="Above_10_million"> 1000萬以上</option>
+                  </select>
+                </div>
+              </div>
+
+              <!--  period of financial management -->
+              <div class="form-group">
+                <label class="text-lg text-primary" for="experiencedPeriod"> 已經接觸理財多久時間？</label>
+                <div class="d-flex justify-content-center my-2">
+                  <select class="form-control form-control-lg w-75 text-gray-900" id='experiencedPeriod' name="experiencedPeriod">
+                    <option value="Less_1_year"> 小於1年</option>
+                    <option value="1_3_years"> 1~3年</option>
+                    <option value="3_5_years"> 3~5年</option>
+                    <option value="More_5_years"> 5年以上</option>
+                  </select>
+                </div>
+              </div>
+
+              <!--  familiarity of investment -->
+              <div class="form-group">
+                <label class="text-lg text-primary" for="investmentFamilarity"> 投資理財的專業程度？</label>
+                <div class="d-flex justify-content-center my-2">
+                  <select class="form-control form-control-lg w-75 text-gray-900" id='investmentFamilarity' name="investmentFamilarity">
+                    <option value="None"> 無</option>
+                    <option value="Not_familiar"> 不太熟悉</option>
+                    <option value="Basics"> 了解基本</option>
+                    <option value="Familiar"> 熟悉大部分</option>
+                    <option value="Experienced"> 熟悉經驗豐富</option>
+                  </select>
+                </div>
+              </div>
+
+              <!--  Experienced Tools -->
+              <div class="form-group">
+                <label class="text-lg text-primary" for="experiencedTools"> 除了存款，還曾經使用那些過理財商品？</label>
+                <div class="d-flex justify-content-around my-2 form-control-lg text-gray-900">
+                  <label><input type="checkbox" name="experiencedTools" value="Foreign_currency"> 外幣存款</label>
+                  <label><input type="checkbox" name="experiencedTools" value="Insurance"> 保險</label>
+                  <label><input type="checkbox" name="experiencedTools" value="Bonds"> 債卷</label>
+                  <label><input type="checkbox" name="experiencedTools" value="Funds"> 基金</label>
+                  <label><input type="checkbox" name="experiencedTools" value="Stocks"> 股票</label>
+                  <label><input type="checkbox" name="experiencedTools" value="Derivatives"> 衍生性商品</label>
+                </div>
+              </div>
+
+              <!-- Risk tolerance -->
+              <div class="form-group text-gray-900">
+                <label class="text-lg text-primary" for="tolerance">若投資100萬，一個星期內可容忍的損失金額？</label>
+                <div class="d-flex justify-content-center my-2">
+                  <select class="form-control form-control-lg w-75 text-gray-900" id='tolerance' name="tolerance">
+                    <option value="Less_50k"> 少於5萬</option>
+                    <option value="50_150k"> 5~15萬</option>
+                    <option value="150_250k"> 15~25萬</option>
+                    <option value="250_400k"> 25~40萬</option>
+                    <option value="More_400k"> 40萬</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Risk reward -->
+              <div class="form-group">
+                <label class="text-lg text-primary" for="riskReward">風險與報酬間怎麼取捨？</label>
+                <div class="d-flex justify-content-center my-2">
+                  <select class="form-control form-control-lg w-75 text-gray-900" id='riskReward' name="riskReward">
+                    <option value="Risk"> 低風險優先</option>
+                    <option value="Risk_reward"> 風險與報酬並重</option>
+                    <option value="Reward"> 報酬優先</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- investment period -->
+              <div class="form-group">
+                <label class="text-lg text-primary" for="investmentPeriod"> 若無法解約，會選擇哪一種商品？</label>
+                <div class="d-flex justify-content-center my-2">
+                  <select class="form-control form-control-lg w-75 text-gray-900" id='investmentPeriod' name="investmentPeriod">
+                    <option value="Risk"> 3 年內無法提領，年報酬2%</option>
+                    <option value="Risk_reward"> 5 年內無法提領，年報酬3%</option>
+                    <option value="Reward"> 8 年內無法提領，年報酬4%</option>
+                    <option value="Reward"> 10年內無法提領，年報酬5%</option>
+                  </select>
+                </div>
+              </div>
+
+                <input type="submit" class="btn btn-primary btn-icon-split p-md-2">
+            </form>
+
+
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2019</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+    <!-- Bootstrap core JavaScript-->
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+  <!-- Custom scripts for all pages-->
+  <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+
+</body>
+
+</html>
