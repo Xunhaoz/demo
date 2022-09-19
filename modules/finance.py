@@ -80,14 +80,15 @@ def data_pre_treatment(stocks_class_list):
     將原本個別以tickit為欄的dataframe取出收盤價
     在彙整到以只有個股收盤價的單一dataframe中
     """
-    concat_list = []
-    concat_list.append(stocks_class_list[0].get_stock_dataframe()['date'])  # 取得時間欄
+
+    stock_df_result = stocks_class_list[0].get_stock_dataframe()['date']  # 取得時間欄
     for stock in stocks_class_list:  # 取得個股收盤價加入串列
-        stock_df = stock.get_stock_dataframe()['close']
-        stock_df.rename(stock.get_stock_name(), inplace=True)
-        concat_list.append(stock_df)
-    data_for_pypfopt = pd.DataFrame(concat_list).T  # 合併個股收盤價並轉置索引與列，欄為個股名稱，列為時間
-    data_for_pypfopt.set_index('date', inplace=True)
+        stock_df = stock.get_stock_dataframe()[['close', 'date']]
+        stock_df = stock_df[~(stock_df['close'] == 0.0)]
+        stock_df = stock_df.rename(columns={'close': stock.get_stock_name()})
+        stock_df_result = pd.merge(stock_df_result, stock_df, on="date")
+    # 合併個股收盤價並轉置索引與列，欄為個股名稱，列為時間
+    data_for_pypfopt = stock_df_result.set_index('date')
     return data_for_pypfopt
 
 
@@ -238,6 +239,18 @@ def exec_hierarchical_risky_party(stocks_df, covariance_matrix, risk_free_rate, 
 def for_demo(risk_free_rate):
     INPUT_PATH = 'static/stocks'
     STOCK_CLASS_LIST = []
+
+    if risk_free_rate < 0.01:
+        INPUT_PATH += '/group1'
+    elif 0.01 < risk_free_rate < 0.02:
+        INPUT_PATH += '/group2'
+    elif 0.02 < risk_free_rate < 0.3:
+        INPUT_PATH += '/group3'
+    elif 0.03 < risk_free_rate < 0.04:
+        INPUT_PATH += '/group4'
+    else:
+        INPUT_PATH += '/group5'
+
     for root, dirs, files in os.walk(INPUT_PATH):
         for file in files:
             if file.endswith('.csv'):
@@ -254,14 +267,12 @@ def for_demo(risk_free_rate):
     result = exec_general_efficient_frontier(STOCK_CLASS_LIST, STOCKS_DF, mu, S, risk_free_rate)
 
     stocksPctChange = STOCKS_DF.pct_change().dropna().sum(axis=1)
-    lastMonth = 0
     pctPeriod = []
     pctChange = []
     for index, value in stocksPctChange.iteritems():
-        if index[6] != str(lastMonth):
+        if index > "2022-08-16":
             pctPeriod.append(index)
             pctChange.append(int(value * 100000) / 1000)
-            lastMonth = index[6]
 
     result['pct_period'] = pctPeriod
     result['pct_change'] = pctChange

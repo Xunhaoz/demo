@@ -37,7 +37,6 @@ def result_page():
 
     for k, i in cal_result['performance'].items():
         cal_result['performance'][k] = int(i * 10000) / 100
-
     return render_template('index.html', stock_names=stock_names, stock_weights=stock_weights,
                            performance=cal_result['performance'], pct_change=cal_result['pct_change'],
                            pct_period=cal_result['pct_period'])
