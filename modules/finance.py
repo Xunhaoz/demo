@@ -43,7 +43,7 @@ class StockClass:
         self.stock_dataframe = pd.read_csv(os.path.join(dir_path, csv_name))
         self.stock_name = csv_name[:-4]
         self.stock_data_len = len(self.stock_dataframe)
-        self.pct_change = self.stock_dataframe['Close'].pct_change().dropna()
+        self.pct_change = self.stock_dataframe['close'].pct_change().dropna()
 
     def get_stock_name(self):
         return self.stock_name
@@ -52,8 +52,8 @@ class StockClass:
         return self.stock_dataframe
 
     def get_stock_period(self):
-        start_time = self.stock_dataframe['Date'][0]
-        end_time = self.stock_dataframe['Date'][self.stock_data_len - 1]
+        start_time = self.stock_dataframe['date'][0]
+        end_time = self.stock_dataframe['date'][self.stock_data_len - 1]
         return {'stock_data_len': self.stock_data_len, 'start_time': start_time, 'end_time': end_time}
 
     # drop na would make the length minus one
@@ -81,13 +81,13 @@ def data_pre_treatment(stocks_class_list):
     在彙整到以只有個股收盤價的單一dataframe中
     """
     concat_list = []
-    concat_list.append(stocks_class_list[0].get_stock_dataframe()['Date'])  # 取得時間欄
+    concat_list.append(stocks_class_list[0].get_stock_dataframe()['date'])  # 取得時間欄
     for stock in stocks_class_list:  # 取得個股收盤價加入串列
-        stock_df = stock.get_stock_dataframe()['Close']
+        stock_df = stock.get_stock_dataframe()['close']
         stock_df.rename(stock.get_stock_name(), inplace=True)
         concat_list.append(stock_df)
     data_for_pypfopt = pd.DataFrame(concat_list).T  # 合併個股收盤價並轉置索引與列，欄為個股名稱，列為時間
-    data_for_pypfopt.set_index('Date', inplace=True)
+    data_for_pypfopt.set_index('date', inplace=True)
     return data_for_pypfopt
 
 
