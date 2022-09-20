@@ -16,7 +16,7 @@ pip install scikit-learn
 
 ```shell
 sudo docker image build -t demo_web .
-sudo docker run -p 5000:5000 --name demo_web demo_web
+sudo docker run -p 5000:5000 --name demo demo_web
 ```
 
 ### terminal
