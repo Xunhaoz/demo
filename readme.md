@@ -29,6 +29,12 @@ pip install -r requirements.txt
 python app.py
 ```
 
+## usage
+```python
+    python app.py
+    python update_stock_data.py
+```
+
 # merge from another code 
 
 ## project structure
