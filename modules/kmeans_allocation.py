@@ -5,11 +5,11 @@ import pandas as pd
 from sklearn import preprocessing
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
-import stocks_features
+import modules.stocks_features as stocks_features
 
 
 def read_feature():
-    conn = sqlite3.connect("../database/finance_feature.db")
+    conn = sqlite3.connect("database/finance_feature.db")
     sql = """
         SELECT * from features
     """
@@ -73,19 +73,21 @@ def plot_graph(data, pred):
 
 
 def store_result(df):
-    conn = sqlite3.connect("../database/finance_feature.db")
+    conn = sqlite3.connect("database/finance_feature.db")
     for data in df.iterrows():
         sql = """
                 INSERT INTO classification (`stock_id`, `group`, `sortino_ratio`)
                 VALUES (?, ?, ?);
             """
-        stock_path = stocks_features.cal_sortino_ratio(f"../static/stocks/{data[1]['stock_id']}.csv")
-        conn.execute(sql, (data[1]["stock_id"], data[1]["kMeans"], stock_path))
+        sor = stocks_features.cal_sortino_ratio(f"static/stocks/stocksSource/{data[1]['stock_id']}.csv")
+        if pd.isna(sor):
+            continue
+        conn.execute(sql, (data[1]["stock_id"], data[1]["kMeans"], sor))
         conn.commit()
     conn.close()
 
 def clear_table():
-    conn = sqlite3.connect("../database/finance_feature.db")
+    conn = sqlite3.connect("database/finance_feature.db")
     sql = """
                 DELETE FROM classification
             """
@@ -94,7 +96,9 @@ def clear_table():
     conn.close()
 
 
-def main():
+def kmeans_allocation():
+    clear_table()
+
     features = read_feature()
 
     # 標準化
@@ -108,10 +112,8 @@ def main():
 
 
     # 畫圖
-    plot_graph(feature_two_dime, features['kMeans'])
+    # plot_graph(feature_two_dime, features['kMeans'])
 
     store_result(features)
 
 
-if __name__ == "__main__":
-    main()

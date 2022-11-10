@@ -42,7 +42,7 @@ def create_feature(stock_id, mean, variance, skewness, kurt, path="database"):
     conn.close()
 
 
-def main(path_to_stock="static/stocks"):
+def main(path_to_stock):
     # generate feature from stocks_info
     for (root, dirs, files) in os.walk(path_to_stock):
         for file in files:
@@ -72,9 +72,20 @@ def main(path_to_stock="static/stocks"):
                 kurt = df.kurt()
 
                 # 存進資料庫
-                create_feature(stock_id, mean, var, skewness, kurt, path="../database")
+                if pd.isna(mean) or pd.isna(var) or pd.isna(skewness) or pd.isna(kurt):
+                    print(stock_id, mean, var, skewness, kurt)
+                    os.remove(os.path.join(path_to_stock, file))
+                else:
+                    create_feature(stock_id, mean, var, skewness, kurt)
+
+def store_feature_sqlite():
+    if os.path.exists('database/finance_feature.db'):
+        os.remove('database/finance_feature.db')    
+    init_db('database')
+    main(path_to_stock='static/stocks/stocksSource')
 
 
 if __name__ == "__main__":
-    init_db('../database')
-    main(path_to_stock='../static/stocks', )
+    if not os.path.exists('../database/finance_feature.db'):
+        init_db('../database')
+    main(path_to_stock='../static/stocks/stocksSource')

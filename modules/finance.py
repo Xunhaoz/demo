@@ -83,6 +83,7 @@ def data_pre_treatment(stocks_class_list):
 
     stock_df_result = stocks_class_list[0].get_stock_dataframe()['date']  # 取得時間欄
     for stock in stocks_class_list:  # 取得個股收盤價加入串列
+        print(stock)
         stock_df = stock.get_stock_dataframe()[['close', 'date']]
         stock_df = stock_df[~(stock_df['close'] == 0.0)]
         stock_df = stock_df.rename(columns={'close': stock.get_stock_name()})

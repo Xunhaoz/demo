@@ -2,15 +2,25 @@ import requests
 import yfinance as yf
 from tqdm import tqdm 
 import pandas as pd
+import shutil
+import os
 
-all_stock_info = pd.read_csv('../static/all_stock_info.csv')
 
-for i in all_stock_info.index:
+def get_stock():
+    link = 'https://quality.data.gov.tw/dq_download_json.php?nid=11549&md5_url=bb878d47ffbe7b83bfc1b41d0b24946e'
+    r = requests.get(link)
+    data = pd.DataFrame(r.json())
+    data.to_csv('static/stocks/stock_id.csv', index=False, header = True)
 
-    # 抓取股票資料
-    stock_id = all_stock_info.loc[i, '證券代號'] + '.TW'
-    stock_name = all_stock_info.loc[i, '證券名稱']
-    data = yf.download(stock_id, start='2012-01-01', end='2022-09-26')
-    data.to_csv(f'../static/stocks/{stock_id}.csv')
+    if os.path.exists('static/stocks/stocksSource'):
+        shutil.rmtree('static/stocks/stocksSource')
+    os.mkdir('static/stocks/stocksSource')
 
-    
+
+    for i in tqdm(data.index):
+        # 抓取股票資料
+        stock_id = data.loc[i, '證券代號'] + '.TW'
+        stock_data = yf.Ticker(stock_id)
+        df = stock_data.history(period="max")
+        df.to_csv(f"static/stocks/stocksSource/{stock_id[:-3]}.csv")
+        

@@ -15,7 +15,6 @@ pip install yfinance
 ## run
 
 ### docker
-
 ```shell
 sudo docker image build -t demo_web .
 sudo docker run -p 5000:5000 --name demo demo_web
@@ -52,20 +51,17 @@ python app.py
 ```
 
 ## get_stock.py
-
 1. 比對 all_stock.csv 檔案中與 statics/stocks 現有檔案差異，並下載尚未存在的股票歷史資訊。
 
 > 現有下載支股票為篩選過之股票<br>
 > 剔除資料為空的 CSV 檔
 
 ## store_feature_sqlite.py
-
 1. 建立資料庫
 2. 計算每檔平均、變異數、峰度、偏度
 3. 存入資料庫
 
 ## kmeans_allocation.py
-
 1. 資料標準化
 2. 資料降維
 3. KMeans 群分類
@@ -74,5 +70,4 @@ python app.py
 6. 存入資料庫
 
 ### stocks_features.py
-
 1. 供期他腳本調用
